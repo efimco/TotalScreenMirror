@@ -1,0 +1,67 @@
+name: TotalScreenMirror
+options:
+  bundleIdPrefix: com.efeklisov
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+
+configs:
+  Debug: debug
+  Release: release
+
+settings:
+  base:
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Automatic
+    TARGETED_DEVICE_FAMILY: "1,2"
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+
+configFiles:
+  Debug: Config/Local.xcconfig
+  Release: Config/Local.xcconfig
+
+targets:
+  TotalScreenMirror:
+    type: application
+    platform: iOS
+    sources:
+      - App
+      - Shared
+    dependencies:
+      - target: MirrorBroadcast
+        embed: true
+      - target: MirrorBroadcastUI
+        embed: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.efeklisov.tsmirror
+        INFOPLIST_FILE: App/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        SUPPORTS_MACCATALYST: NO
+
+  MirrorBroadcast:
+    type: app-extension
+    platform: iOS
+    sources:
+      - Broadcast
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.efeklisov.tsmirror.broadcast
+        INFOPLIST_FILE: Broadcast/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES
+
+  MirrorBroadcastUI:
+    type: app-extension
+    platform: iOS
+    sources:
+      - BroadcastUI
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.efeklisov.tsmirror.broadcastui
+        INFOPLIST_FILE: BroadcastUI/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES

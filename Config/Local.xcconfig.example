@@ -1,0 +1,11 @@
+// Your Apple Developer Team ID.
+//
+// Find it by opening Xcode > Settings > Accounts, selecting your Apple ID,
+// then clicking your name under "Team". The ID is the 10-character string
+// in parentheses. With a free account it is usually your personal team.
+//
+// Alternatively, after signing anything once:
+//   security find-identity -v -p codesigning
+//
+// Leave blank to let Xcode pick, but command-line builds will fail to sign.
+DEVELOPMENT_TEAM =
